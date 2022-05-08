@@ -1,5 +1,5 @@
 /**
- * Handler for different hostnames of urls
+ * Transforms markdown files using transformers added
  */
 class TransformService {
   /**
@@ -17,7 +17,7 @@ class TransformService {
   }
 
   /**
-   * adds transformer to list
+   * Adds transformer to list
    * @param {Object} transformer
    */
   add(transformer) {
