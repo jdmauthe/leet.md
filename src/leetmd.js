@@ -1,8 +1,8 @@
 const TurndownService = require('turndown');
 const fs = require('fs').promises;
 const constants = require('fs').constants;
-const HostnameService = require('./hostnames/hostnames');
-const TransformService = require('./transformers/transformers');
+const HostnameService = require('./services/hostnames');
+const TransformService = require('./services/transformers');
 
 const turndownService = new TurndownService();
 turndownService.keep(['pre']);

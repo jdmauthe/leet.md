@@ -9,7 +9,7 @@ class TransformService {
     this.transformers = [];
     for (const transformer of Object.keys(transformers)) {
       try {
-        this.add(require(`../transformers/${transformer}`));
+        this.add(require(`../transformers/${transformer}/${transformer}`));
       } catch (err) {
         console.error(`Failed to load the ${transformer} transformer`);
       }
