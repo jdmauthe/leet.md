@@ -1,19 +1,26 @@
 {
   "name": "leet.md",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "CLI for creating Markdown files of coding problems descriptions",
+  "bin": {
+    "leetmd": "./bin/cli.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint",
+    "start": "node bin/cli.js"
   },
   "author": "JD Mauthe",
   "license": "ISC",
   "dependencies": {
     "cloudinary": "^1.25.1",
-    "commander": "^7.2.0",
+    "commander": "^9.2.0",
     "download": "^8.0.0",
     "html-escaper": "^3.0.3",
     "puppeteer": "^8.0.0",
     "turndown": "^7.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
