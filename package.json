@@ -14,7 +14,6 @@
   "dependencies": {
     "cloudinary": "^1.25.1",
     "commander": "^9.2.0",
-    "download": "^8.0.0",
     "html-escaper": "^3.0.3",
     "puppeteer": "^13.7.0",
     "turndown": "^7.0.0"
