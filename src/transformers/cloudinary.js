@@ -1,37 +1,74 @@
-const download = require('download')
-const fs = require('fs').promises
+const cloudinary = require('cloudinary').v2;
 
-const cloudinary = require('cloudinary').v2
-cloudinary.config({
-  cloud_name: '',
-  api_key: '',
-  api_secret: ''
-})
-
-async function transform (markdown) {
-  const imageRe = /!\[.*?\]\((.*?)\)|<img .*?src=['"](.*?)['"].*?>/g
-  const urls = []
-  const tempDir = '.tmp'
-  await fs.mkdir(tempDir)
-  for (const match of markdown.matchAll(imageRe)) {
-    const imageUrl = match[1] || match[2]
-    const fileName = imageUrl.substring(imageUrl.lastIndexOf('/') + 1)
-    const tempFile = tempDir + '/' + fileName
-    await fs.writeFile(tempFile, await download(imageUrl))
-    const result = await cloudinary.uploader.upload(tempFile)
-    await fs.rm(tempFile)
-    urls.push(result.secure_url)
+/**
+ * Takes markdown and uploads images to
+ * cloudinary and updates the image urls
+ * @param {String} markdown
+ * @param {Object} info
+ * @return {String} transformed markdown
+ */
+async function transform(markdown, info) {
+  const config = info.config.transformers.cloudinary;
+  if (!setupCloudinary(config)) {
+    return;
   }
-  await fs.rmdir(tempDir)
 
-  const getNextUrl = (function * () {
-    yield * urls
-  })()
+  const urls = [];
+  const imageRe = /!\[.*?\]\((.*?)\)|<img .*?src=['"](.*?)['"].*?>/g;
+  try {
+    const uploads = [];
+    for (const match of markdown.matchAll(imageRe)) {
+      const imageUrl = match[1] || match[2];
+      uploads.push(cloudinary.uploader.upload(imageUrl, {
+        folder: config.folder,
+      }));
+    }
+
+    for (const response of await Promise.all(uploads)) {
+      urls.push(response.secure_url);
+    }
+  } catch {
+    console.error('Failed to run cloudinary transformer');
+  }
+
+  const getNextUrl = (function* () {
+    yield* urls;
+  })();
 
   return markdown.replace(imageRe, (match, markImg, htmlImg) => {
-    const oldUrl = markImg || htmlImg
-    return match.replace(oldUrl, getNextUrl.next().value)
-  })
+    const oldUrl = markImg || htmlImg;
+    return match.replace(oldUrl, getNextUrl.next().value);
+  });
 }
 
-module.exports = { transform }
+/**
+ * @param {Object} config
+ * @return {Boolean} if the config is valid
+ */
+function setupCloudinary(config) {
+  const missing = [];
+  if (config.cloud_name === undefined) {
+    missing.push('cloud_name');
+  }
+  if (config.api_key === undefined) {
+    missing.push('api_key');
+  }
+  if (config.api_secret === undefined) {
+    missing.push('api_secret');
+  }
+  if (missing.length > 0) {
+    console.error('Failed to run cloudinary transformer');
+    console.error(`Cloudinary config is missing: ${missing.join(' ')}`);
+    return false;
+  }
+
+  cloudinary.config({
+    cloud_name: config.cloud_name,
+    api_key: config.api_key,
+    api_secret: config.api_secret,
+  });
+
+  return true;
+}
+
+module.exports = {transform};

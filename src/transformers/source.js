@@ -1,6 +1,5 @@
+const transform = (markdown, {url}) => {
+  return markdown + '\n\n [Source](' + url + ')';
+};
 
-const transform = (markdown, { url }) => {
-  return markdown + '\n\n [Source](' + url + ')'
-}
-
-module.exports = { transform }
+module.exports = {transform};
