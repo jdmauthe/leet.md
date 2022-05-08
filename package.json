@@ -1,7 +1,7 @@
 {
   "name": "leet.md",
   "version": "1.0.0",
-  "description": "CLI for creating Markdown files of coding problems descriptions",
+  "description": "CLI for creating Markdown files of coding problem descriptions",
   "bin": {
     "leetmd": "./bin/cli.js"
   },
@@ -16,7 +16,7 @@
     "commander": "^9.2.0",
     "download": "^8.0.0",
     "html-escaper": "^3.0.3",
-    "puppeteer": "^8.0.0",
+    "puppeteer": "^13.7.0",
     "turndown": "^7.0.0"
   },
   "devDependencies": {
