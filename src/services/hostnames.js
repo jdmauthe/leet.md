@@ -9,12 +9,19 @@ class HostnameService {
     this.registry = {};
     for (const hostname of Object.keys(hostnames)) {
       try {
-        const handler = require(`../hostnames/${hostname}/${hostname}`);
-        this.registry[handler.hostname] = handler.handle;
+        this.add(require(`../hostnames/${hostname}/${hostname}`));
       } catch (err) {
         console.error(`Failed to load handler for ${hostname}`);
       }
     }
+  }
+
+  /**
+   * Adds hostname handler to registry
+   * @param {Object} handler
+   */
+  add(handler) {
+    this.registry[handler.hostname] = handler.handle;
   }
 
   /**
