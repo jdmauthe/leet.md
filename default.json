@@ -1,0 +1,8 @@
+{
+  "overwrite": false,
+  "file": "README.md",
+  "hostnames":  {
+    "leetcode": {}
+  },
+  "transformers": {}
+}
