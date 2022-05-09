@@ -30,11 +30,17 @@ that exist on online platforms.
 <details open="open">
 <summary>Table of Contents</summary>
 
-- [About](#about)
+- [Features](#features)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
+  - [Options](#options)
+- [Configuration](#configuration)
+  - [Quick Start](#quick-start)
+  - [Default Config](#default-config)
+  - [Example Config](#example-config)
+  - [Settings](#settings)
 - [Security](#security)
 - [License](#license)
 
