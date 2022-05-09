@@ -10,7 +10,7 @@
     "start": "node bin/cli.js"
   },
   "author": "JD Mauthe",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "cloudinary": "^1.25.1",
     "commander": "^9.2.0",
