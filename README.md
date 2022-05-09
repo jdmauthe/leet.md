@@ -51,11 +51,11 @@ that exist on online platforms.
 ## Features
 
 - Create markdown files of coding problems descriptions
-- Support of different online coding problem [platforms](hostnames):
+- Support of different online coding problem [platforms](src/hostnames/HOSTNAMES.md):
   - [Leetcode.com](https://leetcode.com/)
-- Support of [transformers](Transformers) to modify the markdown before being written
+- Support of [transformers](src/transformers/TRANSFORMERS.md) to modify the markdown before being written
   - Add source link to bottom of the file
-  - Upload images to cloudinary
+  - Upload images to Cloudinary
 - Customization through `config.json`
 
 ## Getting Started
@@ -94,8 +94,8 @@ The leetmd command supports the following options:
 **These options will override corresponding settings in config.json**
 ## Configuration
 
-You can configure leet.md by creating a `config.json` file in the root of the project. You can
-customize different [settings](Settings) to tailor to you needs. Any setting ommited from the `config.json` will
+You can configure Leet.md by creating a `config.json` file in the root of the project. You can
+customize different [settings](#settings) to tailor to you needs. Any setting omitted from the `config.json` will
 fallback to their default values.
 
 ### Quick Start
@@ -145,8 +145,8 @@ The default settings can be found in `default.json`
 |---------|-------------|------|---------|
 | overwrite | overwrite file if it already exists | `boolean` | `false` |
 | file | name for the file being written | `string` | `README.md` |
-| [hostnames](#hostnames) | list of hostnames to enable and their configurations | `object` | `{ leetcode: {} }` |
-| [transformers](#transformers) | list of transformers to apply to markdown before writing | `object` | `{}` |
+| [hostnames](src/hostnames/HOSTNAMES.md) | list of hostnames to enable and their configurations | `object` | `{ leetcode: {} }` |
+| [transformers](src/transformers/TRANSFORMERS.md) | list of transformers to apply to markdown before writing | `object` | `{}` |
 
 ## Security
 
