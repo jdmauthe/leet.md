@@ -2,6 +2,11 @@
   "name": "leet.md",
   "version": "1.0.0",
   "description": "CLI for creating Markdown files of coding problem descriptions",
+  "keywords": [
+    "markdown",
+    "cli",
+    "leetcode"
+  ],
   "bin": {
     "leetmd": "./bin/cli.js"
   },
