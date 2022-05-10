@@ -8,17 +8,20 @@ After uploading, the transformer will update the image URLs to the images on Clo
 For more information, read about the different [cloudinary plans](https://cloudinary.com/pricing).
 
 ## Setup
-To enable the Cloudinary transformer, add the following to the `transformers` object in `config.json`:
+To enable the Cloudinary transformer, add the following to the `transformers` array in `config.json`:
 
 ```json
-"cloudinary": {
-  "cloud_name": "",
-  "api_key": "",
-  "api_secret": ""
+{
+  "name": "cloudinary",
+  "config": {
+    "cloud_name": "",
+    "api_key": "",
+    "api_secret": ""
+  }
 }
 ```
 
-You will need to replace the empty strings with the appropriate information from cloudinary.
+You will need to replace the empty strings with the appropriate information from Cloudinary.
 **The transformer will not work without completing these settings.**
 
 Your `cloud name`, `API key`, and `API secret` can be found on the [dashboard](https://cloudinary.com/console/).
@@ -28,24 +31,25 @@ For more information on setting up an account and finding the necessary informat
 
 | Setting | Description | Type | Default | Required |
 |---------|-------------|------|---------|----------|
-| `folder` | folder to upload in cloudinary | `string` | `""` | NO |
-| `cloud_name` | name of your cloudinary cloud  | `string` | `""` | YES |
-| `api_key` | api key for cloudinary account | `string` | `""` | YES |
-| `api_secret` | api secret for cloudinary account | `string` | `""` | YES |
+| `folder` | folder to upload in Cloudinary | `string` | `""` | NO |
+| `cloud_name` | name of your Cloudinary cloud  | `string` | `""` | YES |
+| `api_key` | API key for Cloudinary account | `string` | `""` | YES |
+| `api_secret` | API secret for Cloudinary account | `string` | `""` | YES |
 
 ### Example config.json
 
 ```json
 {
-  "overwrite": false,
-  "transformers": {
-    "source": {},
-    "cloudinary": {
-      "folder": "",
-      "cloud_name": "johndoe",
-      "api_key": "12341234123",
-      "api_secret": "iamasecret123"
+  "transformers": [
+    {
+      "name": "cloudinary",
+      "config": {
+        "folder": "",
+        "cloud_name": "johndoe",
+        "api_key": "12341234123",
+        "api_secret": "iamasecret123"
+      }
     }
-  }
+  ]
 }
 ```

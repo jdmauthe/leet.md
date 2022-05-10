@@ -12,7 +12,7 @@ the hostname of the URL.
 |[Leetcode](leetcode/LEETCODE.md)| A platform to help you enhance your skills, expand your knowledge and prepare for technical interviews.
 
 ## Configuration
-Hostnames can be enabled by adding them to the `hostnames` object in `config.json`.
+Hostnames can be enabled by adding them to the `hostnames` array in `config.json`.
 The following `config.json` would enable the [Leetcode](leetcode/LEETCODE.md) hostname:
 
 ```json
@@ -23,8 +23,17 @@ The following `config.json` would enable the [Leetcode](leetcode/LEETCODE.md) ho
 }
 ```
 
-Each key inside the `hostname` object represent a hostname and it's config.
-If a hostname does not require a config, then the value of the key will be `{}`.
+Each object inside the `hostname` array represent a hostname handler. The transformer object
+can have the following properties:
+
+| Property | Description | Type |
+|----------|-------------|------|
+| `name` | The unique name of the hostname | `string`
+| `config` | The config for the hostname | `object`
+
+A hostname object **requires** the `name` property, as it is used to enable the
+correct hostname handler. If a hostname does not require a config, the `config` property
+can be omitted.
 
 ## Creating Transformers
 
@@ -56,9 +65,9 @@ async function handle(info) {
 
 ##### `info`
 
-`info` is an `object` that has the following fields:
+`info` is an `object` that has the following properties:
 
-| field | description | type |
+| Property | Description | Type |
 |-------|-------------|------|
 | `url` | URL of the coding problem | `string` |
 | `config` | the configuration of Leet.md | `object` |

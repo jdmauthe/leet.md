@@ -63,11 +63,11 @@ that exist on online platforms.
 ### Prerequisites
 
 - Node.js 12.0.0+
-- NPM
+- npm
 
 ### Installation
 
-Leet.md can be installed globally:
+Leet.md can be installed globally via `npm`:
 ```bash
 npm install leet.md -g
 ```
@@ -95,7 +95,7 @@ The leetmd command supports the following options:
 ## Configuration
 
 You can configure Leet.md by creating a `config.json` file in the root of the project. You can
-customize different [settings](#settings) to tailor to you needs. Any setting omitted from the `config.json` will
+customize different [settings](#settings) to tailor to your needs. Any setting omitted from the `config.json` will
 fallback to their default values.
 
 ### Quick Start
@@ -120,10 +120,12 @@ The default settings can be found in `default.json`
 {
   "overwrite": false,
   "file": "README.md",
-  "hostnames":  {
-    "leetcode": {}
-  },
-  "transformers": {}
+  "hostnames":  [
+    {
+      "name": "leetcode"
+    }
+  ],
+  "transformers": []
 }
 ```
 
@@ -133,9 +135,11 @@ The default settings can be found in `default.json`
 {
   "overwrite": true,
   "file": "Problem.md",
-  "transformers": {
-    "source": {}
-  }
+  "transformers": [
+    {
+      "name": "source"
+    }
+  ]
 }
 ```
 
@@ -145,8 +149,8 @@ The default settings can be found in `default.json`
 |---------|-------------|------|---------|
 | overwrite | overwrite file if it already exists | `boolean` | `false` |
 | file | name for the file being written | `string` | `README.md` |
-| [hostnames](src/hostnames/HOSTNAMES.md) | list of hostnames to enable and their configurations | `object` | `{ leetcode: {} }` |
-| [transformers](src/transformers/TRANSFORMERS.md) | list of transformers to apply to markdown before writing | `object` | `{}` |
+| [hostnames](src/hostnames/HOSTNAMES.md) | list of hostnames to enable and their configurations | `array` | <br><pre lang='json'>[{"name": "leetcode"}]</pre> |
+| [transformers](src/transformers/TRANSFORMERS.md) | list of transformers to apply to markdown before writing | `array` | `[]` |
 
 ## Security
 
