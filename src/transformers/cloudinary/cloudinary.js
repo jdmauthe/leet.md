@@ -30,7 +30,7 @@ async function transform(markdown, info) {
       urls.push(response.secure_url);
     }
   } catch {
-    console.error('Failed to run cloudinary transformer');
+    console.error('error: failed to run cloudinary transformer');
   }
 
   const getNextUrl = (function* () {
@@ -59,8 +59,9 @@ function setupCloudinary(config) {
     missing.push('api_secret');
   }
   if (missing.length > 0) {
-    console.error('Failed to run cloudinary transformer');
-    console.error(`Cloudinary config is missing: ${missing.join(' ')}`);
+    console.error(
+        `error: cloudinary transformer config is missing: ${missing.join(' ')}`,
+    );
     return false;
   }
 

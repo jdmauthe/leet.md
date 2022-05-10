@@ -9,12 +9,14 @@ const descriptionSelector = 'div.content__u3I1.question-content__JfgR';
  * @return {String} html of leetcode problem description
  */
 async function handle({url}) {
-  let html;
+  let browser;
+  let html = '';
 
   try {
-    const browser = await puppeteer.launch();
+    browser = await puppeteer.launch();
 
     const page = await browser.newPage();
+    page.setDefaultTimeout(10000);
     await page.goto(url);
     await page.waitForSelector(titleSelector, {
       visible: true,
@@ -38,7 +40,10 @@ async function handle({url}) {
     await browser.close();
     html = titleHtml + '\n' + descriptionHtml;
   } catch (err) {
-    console.error(`${domain} handler failed to get html of ${url}`);
+    if (browser !== undefined) {
+      await browser.close();
+    }
+    console.error(`error: ${domain} handler failed to get html of ${url}`);
   }
 
   return html;

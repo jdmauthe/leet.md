@@ -11,7 +11,7 @@ class PlatformService {
       try {
         this.add(require(`../platforms/${platform}/${platform}`));
       } catch (err) {
-        console.error(`Failed to load handler for ${platform}`);
+        console.error(`error: failed to load handler for ${platform}`);
       }
     }
   }

@@ -11,7 +11,7 @@ class TransformService {
       try {
         this.add(require(`../transformers/${transformer}/${transformer}`));
       } catch (err) {
-        console.error(`Failed to load the ${transformer} transformer`);
+        console.error(`error: failed to load the ${transformer} transformer`);
       }
     }
   }

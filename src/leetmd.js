@@ -14,10 +14,15 @@ turndownService.keep(['pre']);
  * @param {Object} config
  */
 async function leetmd(url, config) {
+  if (!validURL(url)) {
+    console.error('error: URL is not valid');
+    return;
+  }
+
   const isFileExist = await fileExist(config.file);
   if (!config.overwrite && isFileExist) {
     console.error(
-        `${config.file} already exists` +
+        `error: ${config.file} already exists` +
         ', use --allow-overwrite to overwrite the file',
     );
     return;
@@ -27,7 +32,11 @@ async function leetmd(url, config) {
   const platformService = new PlatformService(config.platforms);
   const html = await platformService.route(info);
   if (html === undefined) {
-    console.error('Unable to find handler for URL');
+    console.error('error: failed to find handler for URL');
+    return;
+  }
+  if (html === '') {
+    console.error('error: failed to get HTML from handler');
     return;
   }
 
@@ -39,7 +48,7 @@ async function leetmd(url, config) {
   try {
     await writeMarkdown(config.file, markdown, config.overwrite);
   } catch (err) {
-    console.error(`Failed to write ${config.file}`);
+    console.error(`error: failed to write ${config.file}`);
   }
 }
 
@@ -52,6 +61,20 @@ async function fileExist(file) {
     await fs.access(file, constants.F_OK);
     return true;
   } catch (err) {
+    return false;
+  }
+}
+
+/**
+ * Checks if the URL is valid
+ * @param {String} url
+ * @return {Boolean} If URL is valid
+ */
+function validURL(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch {
     return false;
   }
 }
