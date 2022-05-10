@@ -63,11 +63,12 @@ that exist on online platforms.
 ### Prerequisites
 
 - Node.js 12.0.0+
-- NPM
+- npm
 
 ### Installation
 
-Leet.md can be installed globally:
+Leet.md can be installed globally via npm:
+
 ```bash
 npm install leet.md -g
 ```
@@ -75,6 +76,7 @@ npm install leet.md -g
 ## Usage
 
 To create markdown files of coding problems, use the `leetmd` command:
+
 ```bash
 leetmd [URL]
 ```
@@ -83,19 +85,20 @@ leetmd [URL]
 
 The leetmd command supports the following options:
 
-| Options | Description |
-|------|-------------|
-| -V, --version | output the version number |
-| -f, --file \[name\] | name for the file being written |
-| --overwrite | allow existing file to be overwritten |
-| --no-overwrite | do not allow existing file to be overwritten |
-| -h | display the help for command |
+| Options             | Description                                  |
+| ------------------- | -------------------------------------------- |
+| -V, --version       | output the version number                    |
+| -f, --file \[name\] | name for the file being written              |
+| --overwrite         | allow existing file to be overwritten        |
+| --no-overwrite      | do not allow existing file to be overwritten |
+| -h                  | display the help for command                 |
 
 **These options will override corresponding settings in config.json**
+
 ## Configuration
 
 You can configure Leet.md by creating a `config.json` file in the root of the project. You can
-customize different [settings](#settings) to tailor to you needs. Any setting omitted from the `config.json` will
+customize different [settings](#settings) to tailor to your needs. Any setting omitted from the `config.json` will
 fallback to their default values.
 
 ### Quick Start
@@ -103,11 +106,13 @@ fallback to their default values.
 To create a `config.json` file with the default setting, you can copy the `default.json` file.
 
 #### Linux (bash)
+
 ```bash
 cp default.json config.json
 ```
 
 #### Windows (cmd)
+
 ```cmd
 copy default.json config.json
 ```
@@ -120,7 +125,7 @@ The default settings can be found in `default.json`
 {
   "overwrite": false,
   "file": "README.md",
-  "hostnames":  {
+  "hostnames": {
     "leetcode": {}
   },
   "transformers": {}
@@ -141,12 +146,12 @@ The default settings can be found in `default.json`
 
 ### Settings
 
-| Setting | Description | Type | Default |
-|---------|-------------|------|---------|
-| overwrite | overwrite file if it already exists | `boolean` | `false` |
-| file | name for the file being written | `string` | `README.md` |
-| [hostnames](src/hostnames/HOSTNAMES.md) | list of hostnames to enable and their configurations | `object` | `{ leetcode: {} }` |
-| [transformers](src/transformers/TRANSFORMERS.md) | list of transformers to apply to markdown before writing | `object` | `{}` |
+| Setting                                          | Description                                              | Type      | Default            |
+| ------------------------------------------------ | -------------------------------------------------------- | --------- | ------------------ |
+| overwrite                                        | overwrite file if it already exists                      | `boolean` | `false`            |
+| file                                             | name for the file being written                          | `string`  | `README.md`        |
+| [hostnames](src/hostnames/HOSTNAMES.md)          | list of hostnames to enable and their configurations     | `object`  | `{ leetcode: {} }` |
+| [transformers](src/transformers/TRANSFORMERS.md) | list of transformers to apply to markdown before writing | `object`  | `{}`               |
 
 ## Security
 
@@ -160,4 +165,3 @@ _For more information and to report security issues, please refer to our [securi
 This project is licensed under the **MIT license**.
 
 See [LICENSE](LICENSE) for more information.
-

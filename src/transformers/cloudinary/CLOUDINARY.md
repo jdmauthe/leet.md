@@ -1,13 +1,16 @@
 # Cloudinary
+
 ## About
+
 Cloudinary is a cloud-based service that provides images and video management.
 This transformer searches the markdown for all image URLs and uploads the images to your Cloudinary account.
 After uploading, the transformer will update the image URLs to the images on Cloudinary.
 
 **There is a limit on how much you can upload depending on your account plan.**
-For more information, read about the different [cloudinary plans](https://cloudinary.com/pricing).
+For more information, read about the different [Cloudinary plans](https://cloudinary.com/pricing).
 
 ## Setup
+
 To enable the Cloudinary transformer, add the following to the `transformers` object in `config.json`:
 
 ```json
@@ -26,20 +29,18 @@ For more information on setting up an account and finding the necessary informat
 
 ### Settings
 
-| Setting | Description | Type | Default | Required |
-|---------|-------------|------|---------|----------|
-| `folder` | folder to upload in cloudinary | `string` | `""` | NO |
-| `cloud_name` | name of your cloudinary cloud  | `string` | `""` | YES |
-| `api_key` | api key for cloudinary account | `string` | `""` | YES |
-| `api_secret` | api secret for cloudinary account | `string` | `""` | YES |
+| Setting      | Description                       | Type     | Default | Required |
+| ------------ | --------------------------------- | -------- | ------- | -------- |
+| `folder`     | folder to upload in Cloudinary    | `string` | `""`    | NO       |
+| `cloud_name` | name of your Cloudinary cloud     | `string` | `""`    | YES      |
+| `api_key`    | API key for Cloudinary account    | `string` | `""`    | YES      |
+| `api_secret` | API secret for Cloudinary account | `string` | `""`    | YES      |
 
 ### Example config.json
 
 ```json
 {
-  "overwrite": false,
   "transformers": {
-    "source": {},
     "cloudinary": {
       "folder": "",
       "cloud_name": "johndoe",
