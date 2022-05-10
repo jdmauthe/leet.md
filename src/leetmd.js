@@ -1,6 +1,7 @@
 const TurndownService = require('turndown');
 const fs = require('fs').promises;
 const constants = require('fs').constants;
+const configUtil = require('./utils/config')
 const HostnameService = require('./services/hostnames');
 const TransformService = require('./services/transformers');
 
@@ -16,13 +17,15 @@ turndownService.keep(['pre']);
 async function leetmd(url, config) {
   const isFileExist = await fileExist(config.file);
   if (!config.overwrite && isFileExist) {
-    console.error(`${config.file} already exists` +
-      ', use --allow-overwrite to overwrite the file');
+    console.error(
+        `${config.file} already exists` +
+        ', use --allow-overwrite to overwrite the file',
+    );
     return;
   }
 
   const info = {url, config};
-  const hostnameService = new HostnameService(config.hostnames);
+  const hostnameService = new HostnameService(configUtil.hostnameOrder);
   const html = await hostnameService.route(info);
   if (html === undefined) {
     console.error('Unable to find handler for hostname');
@@ -31,7 +34,7 @@ async function leetmd(url, config) {
 
   let markdown = turndownService.turndown(html);
 
-  const transformService = new TransformService(config.transformers);
+  const transformService = new TransformService(configUtil.transformerOrder);
   markdown = await transformService.transform(markdown, info);
 
   try {
@@ -60,7 +63,7 @@ async function fileExist(file) {
  * @param {String} markdown
  * @param {String} overwrite
  */
-async function writeMarkdown(file, markdown, overwrite=false) {
+async function writeMarkdown(file, markdown, overwrite = false) {
   const flag = overwrite ? 'w' : 'wx';
   return fs.writeFile(file, markdown, {flag});
 }

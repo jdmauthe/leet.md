@@ -3,21 +3,23 @@
  */
 class TransformService {
   /**
-   * @param {Object} transformers
+   * @param {Array} transformers
    */
   constructor(transformers) {
     this.transformers = [];
-    for (const transformer of Object.keys(transformers)) {
+    for (const transformer of transformers) {
       try {
-        this.add(require(`../transformers/${transformer}/${transformer}`));
+        this.add(
+            require(`../transformers/${transformer.name}/${transformer.name}`),
+        );
       } catch (err) {
-        console.error(`Failed to load the ${transformer} transformer`);
+        console.error(`Failed to load the ${transformer.name} transformer`);
       }
     }
   }
 
   /**
-   * Adds transformer to list
+   * Adds transformer to array
    * @param {Object} transformer
    */
   add(transformer) {
@@ -30,8 +32,10 @@ class TransformService {
    * @param {Object} info
    */
   async transform(markdown, info) {
-    return this.transformers.reduce((markdown, transformer) =>
-      transformer(markdown, info), markdown);
+    return this.transformers.reduce(
+        (markdown, transformer) => transformer(markdown, info),
+        markdown,
+    );
   }
 }
 

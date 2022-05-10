@@ -1,16 +1,36 @@
 /**
- * Gets the config
+ * Gets the config of Leet.md
  * @return {Object} config
  */
 function getConfig() {
-  const config = getDefaults();
-  try {
-    Object.assign(config, require('../../config.json'));
-  } catch (err) {}
+  const config = getConfigJSON();
+
+  /* Convert list of hostnames into object for easier access */
+  config.hostnames = config.hostnames.reduce((obj, hostname) => {
+    obj[hostname.name] = hostname.config || {};
+    return obj;
+  }, {});
+
+  /* Convert list of transformers into object for easier access */
+  config.transformers = config.transformers.reduce((obj, transformer) => {
+    obj[transformer.name] = transformer.config || {};
+    return obj;
+  }, {});
 
   return config;
 }
 
+/**
+ * Reads config.json if it exists and creates a config
+ * @return {object} Config created from defaults and config.json
+ */
+function getConfigJSON() {
+  const configJSON = getDefaults();
+  try {
+    Object.assign(configJSON, require('../../config.json'));
+  } catch {}
+  return configJSON;
+}
 
 /**
  * Gets the default config
@@ -18,13 +38,19 @@ function getConfig() {
  */
 function getDefaults() {
   return {
-    'overwrite': false,
-    'file': 'README.md',
-    'hostnames': {
-      'leetcode': {},
-    },
-    'transformers': {},
+    overwrite: false,
+    file: 'README.md',
+    hostnames: [
+      {
+        name: 'leetcode',
+      },
+    ],
+    transformers: [],
   };
 }
 
-module.exports = getConfig();
+module.exports = {
+  config: getConfig(),
+  hostnameOrder: getConfigJSON().hostnames,
+  transformerOrder: getConfigJSON().transformers,
+};

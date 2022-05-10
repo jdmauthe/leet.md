@@ -2,7 +2,7 @@
 
 const {Command} = require('commander');
 const {version, description} = require('../package.json');
-const config = require('../src/utils/config');
+const configUtil = require('../src/utils/config');
 const leetmd = require('../src/leetmd');
 
 const program = new Command();
@@ -15,6 +15,7 @@ program
     .option('--overwrite', 'Allow existing file to be overwritten')
     .option('--no-overwrite', 'Do not allow existing file to be overwritten')
     .action((url) => {
+      const config = configUtil.config;
       Object.assign(config, program.opts());
       leetmd(url, config);
     });

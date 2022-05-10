@@ -7,11 +7,11 @@ class HostnameService {
    */
   constructor(hostnames) {
     this.registry = {};
-    for (const hostname of Object.keys(hostnames)) {
+    for (const hostname of hostnames) {
       try {
-        this.add(require(`../hostnames/${hostname}/${hostname}`));
+        this.add(require(`../hostnames/${hostname.name}/${hostname.name}`));
       } catch (err) {
-        console.error(`Failed to load handler for ${hostname}`);
+        console.error(`Failed to load handler for ${hostname.name}`);
       }
     }
   }
