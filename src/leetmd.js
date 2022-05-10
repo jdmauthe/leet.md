@@ -16,8 +16,10 @@ turndownService.keep(['pre']);
 async function leetmd(url, config) {
   const isFileExist = await fileExist(config.file);
   if (!config.overwrite && isFileExist) {
-    console.error(`${config.file} already exists` +
-      ', use --allow-overwrite to overwrite the file');
+    console.error(
+        `${config.file} already exists` +
+        ', use --allow-overwrite to overwrite the file',
+    );
     return;
   }
 
@@ -60,7 +62,7 @@ async function fileExist(file) {
  * @param {String} markdown
  * @param {String} overwrite
  */
-async function writeMarkdown(file, markdown, overwrite=false) {
+async function writeMarkdown(file, markdown, overwrite = false) {
   const flag = overwrite ? 'w' : 'wx';
   return fs.writeFile(file, markdown, {flag});
 }

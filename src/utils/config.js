@@ -11,19 +11,18 @@ function getConfig() {
   return config;
 }
 
-
 /**
  * Gets the default config
  * @return {Object} default config
  */
 function getDefaults() {
   return {
-    'overwrite': false,
-    'file': 'README.md',
-    'hostnames': {
-      'leetcode': {},
+    overwrite: false,
+    file: 'README.md',
+    hostnames: {
+      leetcode: {},
     },
-    'transformers': {},
+    transformers: {},
   };
 }
 

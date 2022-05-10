@@ -22,15 +22,18 @@ async function handle({url}) {
 
     const titleEle = await page.$(titleSelector);
     const titleHtml =
-      '<h1>' + await page.evaluate((ele) => ele.innerHTML, titleEle) + '</h1>';
+      '<h1>' +
+      (await page.evaluate((ele) => ele.innerHTML, titleEle)) +
+      '</h1>';
 
     await page.waitForSelector(descriptionSelector, {
       visible: true,
     });
-    const descriptionEle =
-      await page.$(descriptionSelector);
-    const descriptionHtml =
-      await page.evaluate((ele) => ele.innerHTML, descriptionEle);
+    const descriptionEle = await page.$(descriptionSelector);
+    const descriptionHtml = await page.evaluate(
+        (ele) => ele.innerHTML,
+        descriptionEle,
+    );
 
     await browser.close();
     html = titleHtml + '\n' + descriptionHtml;

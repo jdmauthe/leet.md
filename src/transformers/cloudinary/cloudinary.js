@@ -19,9 +19,11 @@ async function transform(markdown, info) {
     const uploads = [];
     for (const match of markdown.matchAll(imageRe)) {
       const imageUrl = match[1] || match[2];
-      uploads.push(cloudinary.uploader.upload(imageUrl, {
-        folder: config.folder,
-      }));
+      uploads.push(
+          cloudinary.uploader.upload(imageUrl, {
+            folder: config.folder,
+          }),
+      );
     }
 
     for (const response of await Promise.all(uploads)) {

@@ -30,8 +30,10 @@ class TransformService {
    * @param {Object} info
    */
   async transform(markdown, info) {
-    return this.transformers.reduce((markdown, transformer) =>
-      transformer(markdown, info), markdown);
+    return this.transformers.reduce(
+        (markdown, transformer) => transformer(markdown, info),
+        markdown,
+    );
   }
 }
 
