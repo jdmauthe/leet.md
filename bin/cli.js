@@ -8,10 +8,11 @@ const leetmd = require('../src/leetmd');
 const program = new Command();
 
 program
+    .name('leetmd')
     .description(description)
     .version(version)
     .arguments('<url>')
-    .option('-f, --file [name]', 'name for the file being written')
+    .option('-f, --file <name>', 'name for the file being written')
     .option('--overwrite', 'allow existing file to be overwritten')
     .option('--no-overwrite', 'do not allow existing file to be overwritten')
     .action((url) => {
