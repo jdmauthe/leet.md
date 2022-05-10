@@ -19,7 +19,7 @@ function getDefaults() {
   return {
     overwrite: false,
     file: 'README.md',
-    hostnames: {
+    platforms: {
       leetcode: {},
     },
     transformers: {},

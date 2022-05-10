@@ -1,39 +1,39 @@
 /**
- * Handler for different hostnames of urls
+ * Handler for different platforms
  */
-class HostnameService {
+class PlatformService {
   /**
-   * @param {Object} hostnames
+   * @param {Object} platforms
    */
-  constructor(hostnames) {
+  constructor(platforms) {
     this.registry = {};
-    for (const hostname of Object.keys(hostnames)) {
+    for (const platform of Object.keys(platforms)) {
       try {
-        this.add(require(`../hostnames/${hostname}/${hostname}`));
+        this.add(require(`../platforms/${platform}/${platform}`));
       } catch (err) {
-        console.error(`Failed to load handler for ${hostname}`);
+        console.error(`Failed to load handler for ${platform}`);
       }
     }
   }
 
   /**
-   * Adds hostname handler to registry
+   * Adds platform handler to registry
    * @param {Object} handler
    */
   add(handler) {
-    this.registry[handler.hostname] = handler.handle;
+    this.registry[handler.platform] = handler.handle;
   }
 
   /**
-   * Takes url and calls appropiate function to handle hostname
+   * Takes url and calls appropriate function to handle platform
    * @param {Object} info
    */
   async route(info) {
-    const hostname = new URL(info.url).hostname;
-    if (this.registry[hostname]) {
-      return await this.registry[hostname](info);
+    const domain = new URL(info.url).hostname;
+    if (this.registry[domain]) {
+      return await this.registry[domain](info);
     }
   }
 }
 
-module.exports = HostnameService;
+module.exports = PlatformService;

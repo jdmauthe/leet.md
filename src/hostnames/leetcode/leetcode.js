@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const hostname = 'leetcode.com';
+const domain = 'leetcode.com';
 const titleSelector = 'div[data-cy=question-title]';
 const descriptionSelector = 'div.content__u3I1.question-content__JfgR';
 
@@ -38,10 +38,10 @@ async function handle({url}) {
     await browser.close();
     html = titleHtml + '\n' + descriptionHtml;
   } catch (err) {
-    console.error(`${hostname} handler failed to get html of ${url}`);
+    console.error(`${domain} handler failed to get html of ${url}`);
   }
 
   return html;
 }
 
-module.exports = {hostname, handle};
+module.exports = {domain, handle};

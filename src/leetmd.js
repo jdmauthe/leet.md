@@ -1,7 +1,7 @@
 const TurndownService = require('turndown');
 const fs = require('fs').promises;
 const constants = require('fs').constants;
-const HostnameService = require('./services/hostnames');
+const PlatformService = require('./services/hostnames');
 const TransformService = require('./services/transformers');
 
 const turndownService = new TurndownService();
@@ -24,10 +24,10 @@ async function leetmd(url, config) {
   }
 
   const info = {url, config};
-  const hostnameService = new HostnameService(config.hostnames);
-  const html = await hostnameService.route(info);
+  const platformService = new PlatformService(config.platforms);
+  const html = await platformService.route(info);
   if (html === undefined) {
-    console.error('Unable to find handler for hostname');
+    console.error('Unable to find handler for URL');
     return;
   }
 
