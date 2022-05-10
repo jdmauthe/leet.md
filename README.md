@@ -41,6 +41,7 @@ that exist on online platforms.
   - [Default Config](#default-config)
   - [Example Config](#example-config)
   - [Settings](#settings)
+- [Support](#support)
 - [Security](#security)
 - [License](#license)
 
@@ -152,6 +153,13 @@ The default settings can be found in `default.json`
 | file                                             | name for the file being written                          | `string`  | `README.md`        |
 | [hostnames](src/hostnames/HOSTNAMES.md)          | list of hostnames to enable and their configurations     | `object`  | `{ leetcode: {} }` |
 | [transformers](src/transformers/TRANSFORMERS.md) | list of transformers to apply to markdown before writing | `object`  | `{}`               |
+
+## Support
+
+Reach out to the maintainer at one of the following places:
+
+- [GitHub issues](https://github.com/jdmauthe/leet.md/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+)
+- Contact options listed on [this GitHub profile](https://github.com/jdmauthe)
 
 ## Security
 
