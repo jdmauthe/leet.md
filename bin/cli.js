@@ -11,9 +11,9 @@ program
     .description(description)
     .version(version)
     .arguments('<url>')
-    .option('-f, --file <name>', 'Name for the file being written')
-    .option('--overwrite', 'Allow existing file to be overwritten')
-    .option('--no-overwrite', 'Do not allow existing file to be overwritten')
+    .option('-f, --file [name]', 'name for the file being written')
+    .option('--overwrite', 'allow existing file to be overwritten')
+    .option('--no-overwrite', 'do not allow existing file to be overwritten')
     .action((url) => {
       Object.assign(config, program.opts());
       leetmd(url, config);
