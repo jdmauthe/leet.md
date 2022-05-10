@@ -11,6 +11,7 @@
   },
   "author": "JD Mauthe",
   "license": "MIT",
+  "repository": "github:jdmauthe/leet.md",
   "dependencies": {
     "cloudinary": "^1.25.1",
     "commander": "^9.2.0",
