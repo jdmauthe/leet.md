@@ -8,7 +8,7 @@ expand your knowledge and prepare for technical interviews. It has over
 
 ## Setup
 
-To enable the Leetcode hostname, add the following to the `hostname` object in `config.json`:
+To enable the Leetcode platform, add the following to the `platforms` object in `config.json`:
 
 ```json
 "leetcode": {}
@@ -18,7 +18,7 @@ To enable the Leetcode hostname, add the following to the `hostname` object in `
 
 ```json
 {
-  "hostnames": {
+  "platforms": {
     "leetcode": {}
   }
 }

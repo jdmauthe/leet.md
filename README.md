@@ -52,7 +52,7 @@ that exist on online platforms.
 ## Features
 
 - Create markdown files of coding problems descriptions
-- Support of different online coding problem [platforms](src/hostnames/HOSTNAMES.md):
+- Support of different online coding problem [platforms](src/platforms/PLATFORMS.md):
   - [Leetcode.com](https://leetcode.com/)
 - Support of [transformers](src/transformers/TRANSFORMERS.md) to modify the markdown before being written
   - Add source link to bottom of the file
@@ -126,7 +126,7 @@ The default settings can be found in `default.json`
 {
   "overwrite": false,
   "file": "README.md",
-  "hostnames": {
+  "platforms": {
     "leetcode": {}
   },
   "transformers": {}
@@ -151,7 +151,7 @@ The default settings can be found in `default.json`
 | ------------------------------------------------ | -------------------------------------------------------- | --------- | ------------------ |
 | overwrite                                        | overwrite file if it already exists                      | `boolean` | `false`            |
 | file                                             | name for the file being written                          | `string`  | `README.md`        |
-| [hostnames](src/hostnames/HOSTNAMES.md)          | list of hostnames to enable and their configurations     | `object`  | `{ leetcode: {} }` |
+| [platforms](src/platforms/PLATFORMS.md)          | list of platforms to enable and their configurations     | `object`  | `{ leetcode: {} }` |
 | [transformers](src/transformers/TRANSFORMERS.md) | list of transformers to apply to markdown before writing | `object`  | `{}`               |
 
 ## Support

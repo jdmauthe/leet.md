@@ -1,14 +1,14 @@
-# Hostname
+# Platforms
 
 ## About
 
 To create a markdown of the coding problem description from a URL,
-a hostname handler needs to be created for the online platform. The handler
+a platform handler needs to be created for the online platform. The handler
 is responsible for getting the correct information using the URL and turning
 it into a markdown format. Leet.md will call the correct handler based on
-the hostname of the URL.
+the domain of the URL.
 
-### Available Hostnames
+### Available Platforms
 
 | Name                             | Description                                                                                             |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------- |
@@ -16,41 +16,41 @@ the hostname of the URL.
 
 ## Configuration
 
-Hostnames can be enabled by adding them to the `hostnames` object in `config.json`.
-The following `config.json` would enable the [Leetcode](leetcode/LEETCODE.md) hostname:
+Platforms can be enabled by adding them to the `platforms` object in `config.json`.
+The following `config.json` would enable the [Leetcode](leetcode/LEETCODE.md) platform:
 
 ```json
 {
-  "hostnames": {
+  "platforms": {
     "leetcode": {}
   }
 }
 ```
 
-Each key inside the `hostname` object represent a hostname and it's config.
-If a hostname does not require a config, then the value of the key will be `{}`.
+Each key inside the `platform` object represent a platform and it's config.
+If a platform does not require a config, then the value of the key will be `{}`.
 
-## Creating Hostname Handlers
+## Creating Platform Handlers
 
-All files relating to your hostname handler should be kept in a folder located in the hostnames folder: `src/hostnames`.
-The hostname handler should meet the following requirements:
+All files relating to your platform handler should be kept in a folder located in the platforms folder: `src/platforms`.
+The platform handler should meet the following requirements:
 
-- [ ] The hostname handler exports the hostname as a `string` [variable](#hostname-variable)
-- [ ] The hostname handler exports a [function](#handle-function) to get the coding problem description and return it in markdown format
+- [ ] The platform handler exports the domain of the platform as a `string` [variable](#domain-variable)
+- [ ] The platform handler exports a [function](#handle-function) to get the coding problem description and return it in markdown format
 - [ ] The folder contains a [README](#foldernamemd)
 - [ ] The `module.exports` is in the [correct format](#export)
 
-### `hostname` variable
+### `domain` variable
 
-The hostname should be exported as a `string`:
+The domain of the platform should be exported as a `string`:
 
 ```javascript
-const hostname = "hostname.com";
+const domain = "platform.com";
 ```
 
 ### `handle` function
 
-A hostname handler is a module that exports the following function:
+A platform handler is a module that exports the following function:
 
 ```js
 async function handle(info) {}
@@ -67,8 +67,8 @@ async function handle(info) {}
 | `url`    | URL of the coding problem    | `string` |
 | `config` | the configuration of Leet.md | `object` |
 
-You can get your hostname config through `info.config.hostnames['FOLDERNAME']`, replacing
-`FOLDERNAME` with the name of the folder that your hostname resides in.
+You can get your platform config through `info.config.platforms['FOLDERNAME']`, replacing
+`FOLDERNAME` with the name of the folder that your platform resides in.
 
 #### Returns
 
@@ -82,13 +82,13 @@ where `FOLDERNAME` is replaced with the name of your folder
 The README should include the following information if applicable:
 
 - [ ] Description of the platform
-- [ ] How to setup the hostname handler
-- [ ] The functionality of individual settings in the hostname config
+- [ ] How to setup the platform handler
+- [ ] The functionality of individual settings in the platform config
 
 ### Export
 
 The export of the module should match the following:
 
 ```javascript
-module.exports = { hostname, handle };
+module.exports = { domain, handle };
 ```
