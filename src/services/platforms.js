@@ -21,7 +21,7 @@ class PlatformService {
    * @param {Object} handler
    */
   add(handler) {
-    this.registry[handler.platform] = handler.handle;
+    this.registry[handler.domain] = handler.handle;
   }
 
   /**

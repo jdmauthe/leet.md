@@ -1,7 +1,7 @@
 const TurndownService = require('turndown');
 const fs = require('fs').promises;
 const constants = require('fs').constants;
-const PlatformService = require('./services/hostnames');
+const PlatformService = require('./services/platforms');
 const TransformService = require('./services/transformers');
 
 const turndownService = new TurndownService();
