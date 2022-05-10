@@ -79,7 +79,7 @@ npm install leet.md -g
 To create markdown files of coding problems, use the `leetmd` command:
 
 ```bash
-leetmd [URL]
+leetmd [options] <url>
 ```
 
 ### Options
@@ -89,7 +89,7 @@ The leetmd command supports the following options:
 | Options             | Description                                  |
 | ------------------- | -------------------------------------------- |
 | -V, --version       | output the version number                    |
-| -f, --file \[name\] | name for the file being written              |
+| -f, --file \<name\> | name for the file being written              |
 | --overwrite         | allow existing file to be overwritten        |
 | --no-overwrite      | do not allow existing file to be overwritten |
 | -h                  | display the help for command                 |
